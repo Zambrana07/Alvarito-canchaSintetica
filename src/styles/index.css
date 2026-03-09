@@ -1,0 +1,28 @@
+/*
+  ============================================
+  ESTILOS GLOBALES (toda la página)
+  ============================================
+  Si quieres cambiar el color de fondo o del texto de toda la página,
+  edita las variables de abajo:
+    --color-fondo   = color de fondo
+    --color-texto   = color del texto
+    --fuente        = tipo de letra
+*/
+
+:root {
+  --color-fondo: #f5f5f5;
+  --color-texto: #222;
+  --fuente: system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente);
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+}

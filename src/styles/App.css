@@ -1,0 +1,28 @@
+/*
+  ============================================
+  ESTILOS DE LA PÁGINA
+  ============================================
+  .pagina = el contenedor de todo el contenido.
+  Puedes cambiar padding (espacio interno) o max-width (ancho máximo del texto).
+*/
+
+.pagina {
+  margin: 0 auto;
+}
+
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: #908787;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.pagina h1 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.pagina p {
+  line-height: 1.6;
+}
