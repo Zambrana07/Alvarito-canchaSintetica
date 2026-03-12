@@ -135,7 +135,12 @@ function App() {
 
       {/* Carrusel con imágenes y círculos (rama entrante) */}
       <main className="body">
-        <p>En la soda Armonía hay una gran variedad de comida y bocadillos de los que puedes comprar, también incluyendo grandes espacios de descanso para comer tu comida.</p>
+        <h1 className="section-title">Nuestra soda</h1>
+        <div className="body-intro">
+          <p>En la soda Armonía hay una gran variedad de comida y bocadillos de los que puedes comprar, también incluyendo grandes espacios de descanso para comer tu comida.</p>
+        </div>
+
+
 
         <div className="carrusel">
 
@@ -159,8 +164,9 @@ function App() {
           <button onClick={siguiente}>▶</button>
 
         </div>
+        <h1 className="section-title">Productos:</h1>
 
-        <p>En la soda puedes encontrar mucha comida deliciosa y otros productos para saciar tu hambre...</p>
+        <p className="body-intro text-below-carrusel">En la soda puedes encontrar mucha comida deliciosa y otros productos para saciar tu hambre...</p>
 
         <div className="circle-carousel">
 
@@ -240,10 +246,6 @@ function App() {
         <h1>Caracteristicas de Armonia</h1>
         <p>Armonia ofrece diferentes servicios para la comunidad</p>
         <ServiceCards servicios={serviciosArmonia} />
-      </section>
-      <section className="cancha-section">
-        <h1>Cancha sintetica</h1>
-        <p>Página informativa sobre la soda y la cancha sintética del CTP CIT.</p>
       </section>
 
     </div>

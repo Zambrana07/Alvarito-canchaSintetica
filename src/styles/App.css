@@ -16,7 +16,7 @@
 .carrousel-section h1,
 .General-section h1,
 .about-section h1,
-.cancha-section h1 {
+.section-title {
   font-family: 'Outfit', system-ui, sans-serif;
   font-weight: 600;
   font-size: clamp(1.75rem, 4vw, 2.25rem);
@@ -28,8 +28,7 @@
 
 .header p,
 .carrousel-section > p,
-.about-section > p,
-.cancha-section > p {
+.about-section > p {
   text-align: center;
   color: rgba(255, 255, 255, 0.95);
   font-family: 'Outfit', system-ui, sans-serif;
@@ -71,6 +70,46 @@
   margin-bottom: 1rem;
 }
 
+/* Textos intro del body: mismo estilo que "Sobre nosotros" */
+.body-intro {
+  width: 100%;
+  max-width: none;
+  padding: 0 3rem;
+  box-sizing: border-box;
+}
+
+.body-intro p,
+.body-intro.text-below-carrusel {
+  width: 100%;
+  max-width: none;
+  text-align: left;
+  margin: 0 0 1rem;
+  padding: 0 3rem;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+
+.body-intro.text-below-carrusel {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.circle-text {
+  width: 100%;
+  max-width: none;
+  margin: 1rem 0;
+  padding: 0 3rem;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Outfit', system-ui, sans-serif;
+  text-align: center;
+}
+
 /* Estilos del carrusel con imágenes (rama entrante) */
 .carrusel{
   margin: 15px;
@@ -96,7 +135,7 @@
   animation:fade 0.6s ease-in-out;
 }
 
-/* TEXTO SOBRE LA IMAGEN */
+/* TEXTO SOBRE LA IMAGEN (mismo estilo que el resto de textos) */
 
 .texto-imagen{
   position:absolute;
@@ -106,8 +145,10 @@
   width:100%;
   padding:15px;
 
-  color:white;
-  font-size:18px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.25rem;
+  line-height: 1.75;
+  font-family: 'Outfit', system-ui, sans-serif;
 
   background:linear-gradient(transparent, rgba(0,0,0,0.7));
 
@@ -176,14 +217,7 @@ button{
   box-shadow:0 0 15px rgba(0,0,0,0.4);
 }
 
-/* texto */
-
-.circle-text{
-  text-align:center;
-  margin-top:15px;
-  font-size:20px;
-  font-weight:bold;
-}
+/* circle-text: mismo tipografía que el resto pero centrado */
 
 /* Sección BounceCards (HEAD) */
 .carrousel-section {
@@ -197,6 +231,7 @@ button{
   justify-content: center;
   gap: 1rem;
   border-bottom: 10px solid rgba(255, 255, 255, 0.596);
+  border-top: 10px solid rgba(255, 255, 255, 0.596);
 }
 
 .carrousel-section .custom-bounceCards {
@@ -288,25 +323,6 @@ button{
 
 .about-section > p {
   margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.95);
-}
-
-/* Sección Cancha sintética (Jose David) */
-.cancha-section {
-  width: 100%;
-  min-height: 20vh;
-  padding: 2rem 1rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  border-bottom: 3px solid rgba(0, 0, 0, 0.15);
-}
-
-.cancha-section h1 {
-  margin-top: 0;
-}
-
-.cancha-section > p {
-  margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.95);
 }
 
