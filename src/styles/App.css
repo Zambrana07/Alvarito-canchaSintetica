@@ -3,26 +3,198 @@
   ESTILOS DE LA PÁGINA
   ============================================
   .pagina = el contenedor de todo el contenido.
-  Puedes cambiar padding (espacio interno) o max-width (ancho máximo del texto).
+  Títulos centrados, blancos, con tipografía Outfit.
 */
+
 
 .pagina {
   margin: 0 auto;
 }
 
-.header {
-  width: 100%;
-  height: 100px;
-  background-color: #908787;
-  padding: 1rem;
-  margin-bottom: 2rem;
+/* Títulos principales: centrados, blancos, tipografía bonita */
+.header h1,
+.carrousel-section h1,
+.General-section h1,
+.about-section h1,
+.cancha-section h1 {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  color: #fff;
+  text-align: center;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.02em;
 }
 
-.pagina h1 {
-  font-size: 1.75rem;
+.header p,
+.carrousel-section > p,
+.about-section > p,
+.cancha-section > p {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1.125rem;
+  max-width: min(72ch, 90%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  width: 100%;
+  min-height: 100px;
+  background-color: #366842;
+  padding: 1.5rem 1rem;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.02em;
+  margin-right: 2rem;
+}
+
+.header-icon {
+  align-self: left;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
   margin-bottom: 1rem;
 }
 
-.pagina p {
-  line-height: 1.6;
+.carrousel-section {
+  width: 100%;
+  min-height: 46vh;
+  padding: 1rem;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-bottom: 10px solid rgba(255, 255, 255, 0.596);
 }
+
+.carrousel-section .custom-bounceCards {
+  margin: 0 auto;
+}
+/* General-section: dos columnas — izquierda = Sobre nosotros, derecha = mapa */
+.General-section {
+  width: 100%;
+  min-height: 30vh;
+  margin-bottom: 0;
+  padding: 2rem 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: stretch;
+  justify-content: center;
+  border-bottom: 10px solid rgba(255, 255, 255, 0.53);
+}
+
+.General-section .general-section-col {
+  padding: 3rem;
+  flex: 1 1 300px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.General-section .general-section-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.General-section .general-section-left h1 {
+  text-align: left;
+}
+
+.General-section .general-section-left p {
+  width: 100%;
+  max-width: none;
+  text-align: left;
+  margin: 0 0 1rem;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.General-section .general-section-right {
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.General-section .general-section-right h1 {
+  margin-bottom: 1rem;
+}
+
+.General-section h1 {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  color: #fff;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.map-container {
+  flex: 1;
+  width: 100%;
+  min-height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.about-section {
+  width: 100%;
+  min-height: 30vh;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.about-section h1 {
+  margin-top: 0;
+}
+
+.about-section > p {
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Sección Cancha sintética (Jose David) — mismos estilos que el resto de la página */
+.cancha-section {
+  width: 100%;
+  min-height: 20vh;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.cancha-section h1 {
+  margin-top: 0;
+}
+
+.cancha-section > p {
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.pagina p {
+  line-height: 1.65;
+}
+
