@@ -71,6 +71,121 @@
   margin-bottom: 1rem;
 }
 
+/* Estilos del carrusel con imágenes (rama entrante) */
+.carrusel{
+  margin: 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+}
+
+.imagen-container{
+  position:relative;
+  width:700px;
+  height: 500px;
+  overflow:hidden;
+}
+
+.imagen-carrusel{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:10px;
+
+  animation:fade 0.6s ease-in-out;
+}
+
+/* TEXTO SOBRE LA IMAGEN */
+
+.texto-imagen{
+  position:absolute;
+  bottom:0;
+  left:0;
+
+  width:100%;
+  padding:15px;
+
+  color:white;
+  font-size:18px;
+
+  background:linear-gradient(transparent, rgba(0,0,0,0.7));
+
+  border-radius:0 0 10px 10px;
+}
+
+/* ANIMACIÓN */
+
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:scale(1.05);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+button{
+  font-size:30px;
+  cursor:pointer;
+  border:none;
+  background:none;
+}
+
+.circle-carousel{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  margin-top:50px;
+}
+
+.circle-container{
+  display:flex;
+  gap:15px;
+  margin: 25px;
+}
+
+.circle{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  overflow:hidden;
+
+  transform:scale(0.8);
+  opacity:0.5;
+
+  transition:all 0.4s ease;
+  cursor:pointer;
+}
+
+.circle img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* círculo activo */
+
+.circle.active{
+  transform:scale(1.2);
+  opacity:1;
+  box-shadow:0 0 15px rgba(0,0,0,0.4);
+}
+
+/* texto */
+
+.circle-text{
+  text-align:center;
+  margin-top:15px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* Sección BounceCards (HEAD) */
 .carrousel-section {
   width: 100%;
   min-height: 46vh;
@@ -87,6 +202,7 @@
 .carrousel-section .custom-bounceCards {
   margin: 0 auto;
 }
+
 /* General-section: dos columnas — izquierda = Sobre nosotros, derecha = mapa */
 .General-section {
   width: 100%;
@@ -175,7 +291,7 @@
   color: rgba(255, 255, 255, 0.95);
 }
 
-/* Sección Cancha sintética (Jose David) — mismos estilos que el resto de la página */
+/* Sección Cancha sintética (Jose David) */
 .cancha-section {
   width: 100%;
   min-height: 20vh;
@@ -197,4 +313,3 @@
 .pagina p {
   line-height: 1.65;
 }
-

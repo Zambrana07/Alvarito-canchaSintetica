@@ -1,8 +1,9 @@
 import './styles/App.css'
 import BounceCards from './components/BounceCards'
 import ServiceCards from './components/ServiceCards'
-// ========== IMÁGENES DEL CARRUSEL ==========
-// Añade aquí un import por cada imagen nueva (ruta desde src/styles/Img o la carpeta que uses).
+import { useState, useEffect } from "react";
+
+// Imágenes del carrusel BounceCards (HEAD)
 import arbol from './styles/Img/arbol.jpg'
 import paletas from './styles/Img/paletas.jpg'
 import image from './styles/Img/image.png'
@@ -11,18 +12,18 @@ import hojita from './styles/Img/hojita.jpg'
 import casado from './styles/Img/casado.jpeg'
 import armonia from './styles/Img/armonia.jpg'
 import soda from './styles/Img/soda.jpg'
-/*
-  ============================================
-  CÓMO AÑADIR MÁS IMÁGENES AL CARRUSEL
-  ============================================
-  1. Guarda la imagen en la carpeta src/styles/Img/ (o en otra carpeta dentro de src).
-  2. Arriba, añade una línea de import. Ejemplo:
-       import miFoto from './styles/Img/miFoto.jpg'
-  3. Abajo, en el array carouselImages, añade el nombre de la variable (ej: miFoto).
-     Ejemplo: const carouselImages = [arbol, paletas, image, hojas, miFoto]
 
-  No hace falta tocar transformStyles: se generan solas según cuántas imágenes haya.
-*/
+// Imágenes del carrusel principal y círculos (rama entrante)
+import img1 from "./styles/images/image-1.jpg";
+import img2 from "./styles/images/image-2.jpg";
+import img3 from "./styles/images/image-3.jpg";
+import img4 from "./styles/images/image-4.jpg";
+import img5 from "./styles/images/brownies.png";
+import img6 from "./styles/images/pastel-zanahoria.png";
+import img7 from "./styles/images/pie-limon.png";
+import img8 from "./styles/images/desayunos.png";
+import img9 from "./styles/images/bebidas.jpg";
+import img10 from "./styles/images/traesh-2.jpg";
 
 // Genera la posición/rotación de cada carta automáticamente (una por imagen).
 function getTransformStyles(count) {
@@ -37,25 +38,168 @@ function getTransformStyles(count) {
   })
 }
 
-// Lista de imágenes del carrusel. Para añadir más: import arriba y añade aquí.
+// Lista de imágenes del carrusel BounceCards.
 const carouselImages = [arbol, paletas, image, hojas, hojita]
 const carouselTransforms = getTransformStyles(carouselImages.length)
 
-// Servicios de Armonía: cada uno tiene imagen, título y descripción. Edita aquí el texto.
+// Servicios de Armonía: cada uno tiene imagen, título y descripción.
 const serviciosArmonia = [
   { imagen: casado, titulo: 'Alimentación saludable', descripcion: 'Menús balanceados y de calidad.' },
   { imagen: armonia, titulo: 'Nutrición escolar', descripcion: 'Enfoque en opciones nutritivas.' },
   { imagen: soda, titulo: 'Compromiso educativo', descripcion: ' Promoción de la alimentación consciente' }
-] 
+]
 
 function App() {
+
+  const circles = [
+    {
+      img: img5,
+      text: "Deliciosos brownies llenos de dulce chocolate..."
+    },
+    {
+      img: img6,
+      text: "¡Pasteles de zanahoria que están para morirse!"
+    },
+    {
+      img: img7,
+      text: "Un pie de limón tanto ácido como sabroso."
+    },
+    {
+      img: img8,
+      text: "Desayunos típicos al verdadero estilo tico..."
+    },
+    {
+      img: img9,
+      text: "Refrescantes bebidas para los más sedientos."
+    }
+  ];
+
+  const [circleIndex, setCircleIndex] = useState(0);
+
+  const nextCircle = () => {
+    setCircleIndex((circleIndex + 1) % circles.length);
+  };
+
+  const prevCircle = () => {
+    setCircleIndex((circleIndex - 1 + circles.length) % circles.length);
+  };
+
+  const images = [
+    {
+      src: img1,
+      text: "Acá puedes descansar mientras comes tu almuerzo..."
+    },
+    {
+      src: img2,
+      text: "¡Deliciosos postres que ni una repostería se compara!"
+    },
+    {
+      src: img3,
+      text: "Desayunos típicos, ya me entra el apetito..."
+    },
+    {
+      src: img4,
+      text: "También cuenta con sillas externas para poder tener un respiro de aire fresco."
+    },
+    {
+      src: img10,
+      text: "¿Tienes basura? Hay muchos lugares en donde puedes botarla, en vez de tirarla en el suelo."
+    }
+  ];
+
+  const [current, setCurrent] = useState(0);
+
+  const siguiente = () => {
+    setCurrent((current + 1) % images.length);
+  };
+
+  const anterior = () => {
+    setCurrent((current - 1 + images.length) % images.length);
+  };
+
+  // Cambio automático cada 3 segundos
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      siguiente();
+    }, 3000);
+
+    return () => clearInterval(intervalo);
+  }, [current]);
+
   return (
     <div className="pagina">
-      {/* HEADER: todo lo que pongas aquí se verá arriba. */}
       <header className="header">
         <img src="src/styles/Img/icon.jpg" className="header-icon" />
         <h1 className="header-title">Soda armonia</h1>
       </header>
+
+      {/* Carrusel con imágenes y círculos (rama entrante) */}
+      <main className="body">
+        <p>En la soda Armonía hay una gran variedad de comida y bocadillos de los que puedes comprar, también incluyendo grandes espacios de descanso para comer tu comida.</p>
+
+        <div className="carrusel">
+
+          <button onClick={anterior}>◀</button>
+
+          <div className="imagen-container">
+
+            <img
+              key={current}
+              className="imagen-carrusel"
+              src={images[current].src}
+              alt="Carrusel"
+            />
+
+            <div className="texto-imagen">
+              {images[current].text}
+            </div>
+
+          </div>
+
+          <button onClick={siguiente}>▶</button>
+
+        </div>
+
+        <p>En la soda puedes encontrar mucha comida deliciosa y otros productos para saciar tu hambre...</p>
+
+        <div className="circle-carousel">
+
+          <button onClick={prevCircle}>⬅️</button>
+
+          <div className="circle-container">
+
+            {circles.map((item, index) => (
+              <div
+                key={index}
+                className={`circle ${circleIndex === index ? "active" : ""}`}
+                onClick={() => setCircleIndex(index)}
+              >
+                <img src={item.img} alt="circle" />
+              </div>
+            ))}
+
+          </div>
+
+          <button onClick={nextCircle}>➡️</button>
+
+        </div>
+
+        <p className="circle-text">
+          {circles[circleIndex].text}
+        </p>
+        <div className="indicadores">
+          {images.map((_, index) => (
+            <span
+              key={index}
+              className={current === index ? "activo" : ""}
+              onClick={() => setCurrent(index)}
+            ></span>
+          ))}
+        </div>
+
+      </main>
+
+      {/* Sección BounceCards y resto (HEAD) */}
       <section className="carrousel-section">
         <h1>Armonia</h1>
         <BounceCards
@@ -97,11 +241,11 @@ function App() {
         <p>Armonia ofrece diferentes servicios para la comunidad</p>
         <ServiceCards servicios={serviciosArmonia} />
       </section>
-      {/* Sección de Jose David: Cancha sintética — estilos unificados con el resto de la página */}
       <section className="cancha-section">
         <h1>Cancha sintetica</h1>
         <p>Página informativa sobre la soda y la cancha sintética del CTP CIT.</p>
       </section>
+
     </div>
   )
 }
