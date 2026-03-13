@@ -77,3 +77,36 @@ Para cambiar el **tamaño de las cartas**, edita en **`src/components/BounceCard
 | `src/main.jsx` | Entrada de la app. No suele tocarse. |
 
 Solo necesitas tocar **App.jsx** (textos) y, si quieres, **index.css** y **App.css** (estilos).
+
+---
+
+## Publicar en GitHub Pages
+
+El proyecto está preparado para publicarse en GitHub Pages con **npm run build** y un workflow automático.
+
+### 1. Build local (probar que compila)
+
+```powershell
+npm run build
+```
+
+Se genera la carpeta **`dist`** con la web lista para subir. Para verla en local:
+
+```powershell
+npm run preview
+```
+
+### 2. Activar GitHub Pages en el repositorio
+
+1. En GitHub, ve a tu repo → **Settings** → **Pages**.
+2. En **Source** elige **GitHub Actions** (no "Deploy from a branch").
+3. Guarda si hace falta.
+
+### 3. Subir el código y desplegar
+
+1. Sube el código a GitHub (rama **main**).
+2. El workflow **Deploy to GitHub Pages** se ejecuta solo en cada push a `main`.
+3. Cuando termine, la página estará en:
+   **`https://<tu-usuario>.github.io/<nombre-del-repo>/`**
+
+Si la rama principal se llama **master** en lugar de **main**, edita `.github/workflows/deploy-pages.yml` y cambia `branches: ["main"]` por `branches: ["master"]`.

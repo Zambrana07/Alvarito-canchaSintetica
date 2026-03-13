@@ -12,6 +12,7 @@ import hojita from './styles/Img/hojita.jpg'
 import casado from './styles/Img/casado.jpeg'
 import armonia from './styles/Img/armonia.jpg'
 import soda from './styles/Img/soda.jpg'
+import icon from './styles/Img/icon.jpg'
 
 // Imágenes del carrusel principal y círculos (rama entrante)
 import img1 from "./styles/images/image-1.jpg";
@@ -129,7 +130,7 @@ function App() {
   return (
     <div className="pagina">
       <header className="header">
-        <img src="src/styles/Img/icon.jpg" className="header-icon" />
+        <img src={icon} alt="" className="header-icon" />
         <h1 className="header-title">Soda armonia</h1>
       </header>
 
