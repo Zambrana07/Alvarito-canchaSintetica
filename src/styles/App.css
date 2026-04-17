@@ -9,6 +9,11 @@
 
 .pagina {
   margin: 0 auto;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(25, 45, 31, 0.72), rgba(25, 45, 31, 0.72)), url('./Img/arbol.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 /* Títulos principales: centrados, blancos, tipografía bonita */
