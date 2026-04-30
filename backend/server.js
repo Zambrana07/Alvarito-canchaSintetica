@@ -1,174 +1,68 @@
-/*Crear el servidor*/
-
 const express = require("express")
-
 const cors = require("cors")
-
 const { Pool } = require("pg")
-
 
 const app = express()
 
-
 app.use(cors())
-
 app.use(express.json())
 
-/*Conexión a PostgreSQL*/
-
+/* Conexión a PostgreSQL */
 const pool = new Pool({
-
   user: "postgres",
-
   host: "localhost",
-
-  database: "dbArmonia",
-
+  database: "dbarmonia",
   password: "123456",
-
   port: 5432
-
 })
 
-/*Levantar servidor*/
+/* Verificar conexión */
+pool.connect()
+  .then(() => console.log("Conectado a PostgreSQL"))
+  .catch(err => console.error("Error de conexión:", err.message))
 
+/* Levantar servidor */
 app.listen(3001, () => {
-
   console.log("Servidor backend funcionando en puerto 3001")
-
 })
 
-/*API para agregar producto al carrito*/
-
+/* API para agregar producto al carrito */
 app.post("/carrito", async (req, res) => {
-
-
-  const { nombre, precio, imagen } = req.body
-
+  const { nombre, precio } = req.body
 
   try {
+    // ✅ Validación mejorada
+    if (!nombre || precio === undefined) {
+      return res.status(400).json({ error: "Faltan datos obligatorios" })
+    }
 
-
-    await pool.query(
-
-      "INSERT INTO carrito(nombre,precio,imagen,cantidad) VALUES($1,$2,$3,$4)",
-
-      [nombre, precio, imagen, 1]
-
+    const result = await pool.query(
+      "INSERT INTO carrito(nombre, precio, cantidad) VALUES($1,$2,$3) RETURNING *",
+      [nombre, precio, 1]
     )
 
-
-    res.json({ mensaje: "Producto agregado al carrito" })
-
+    res.json({
+      mensaje: "Producto agregado al carrito",
+      producto: result.rows[0]
+    })
 
   } catch (error) {
+    console.error("ERROR DETALLADO:", error.message)
 
-    console.log(error)
-
-    res.status(500).json({ error: "Error al agregar producto" })
-
-  }
-
-
-})
-
-/* API para actualizar cantidad */
-app.put("/carrito/:id", async (req, res) => {
-  const { id } = req.params
-  const { delta } = req.body
-
-  try {
-    await pool.query(
-      "UPDATE carrito SET cantidad = cantidad + $1 WHERE id = $2",
-      [delta, id]
-    )
-
-    await pool.query("DELETE FROM carrito WHERE cantidad <= 0")
-
-    res.json({ mensaje: "Cantidad actualizada" })
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ error: "Error al actualizar cantidad" })
+    res.status(500).json({
+      error: "Error al agregar producto",
+      detalle: error.message
+    })
   }
 })
 
-/*API para ver el carrito*/
-
+/* API para ver el carrito */
 app.get("/carrito", async (req, res) => {
-
-
   try {
-
-
-    const result = await pool.query("SELECT * FROM carrito")
-
-
+    const result = await pool.query("SELECT * FROM carrito ORDER BY id DESC")
     res.json(result.rows)
-
-
   } catch (error) {
-
-    console.log(error)
-
+    console.error("ERROR DETALLADO:", error.message)
     res.status(500).json({ error: "Error al obtener carrito" })
-
   }
-
-
-})
-
-/*API para eliminar un producto del carrito*/
-
-app.delete("/carrito/:id", async (req, res) => {
-
-
-  const id = req.params.id
-
-
-  try {
-
-
-    await pool.query(
-
-      "DELETE FROM carrito WHERE id=$1",
-
-      [id]
-
-    )
-
-
-    res.json({ mensaje: "Producto eliminado del carrito" })
-
-
-  } catch (error) {
-
-    console.log(error)
-
-    res.status(500).json({ error: "Error al eliminar producto" })
-
-  }
-
-})
-
-app.delete("/carrito", async (req, res) => {
-
-
-  try {
-
-
-    await pool.query("DELETE FROM carrito")
-
-
-    res.json({ mensaje: "Carrito vaciado" })
-
-
-  } catch (error) {
-
-    console.log(error)
-
-    res.status(500).json({ error: "Error al vaciar carrito" })
-
-  }
-
-
 })
